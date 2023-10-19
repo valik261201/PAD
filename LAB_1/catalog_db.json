@@ -1,0 +1,11 @@
+{
+    "engine": {
+        "price": 1000.0,
+        "quantity": 10
+    },
+
+    "oil-pump": {
+        "price": 150.0,
+        "quantity": 5
+    }
+}
