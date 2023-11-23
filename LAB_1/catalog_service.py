@@ -10,11 +10,14 @@ def load_db():
     with open('catalog_db.json', 'r') as f:
         return json.load(f)
 
-def save_db():
+def save_db(catalog):
     with open('catalog_db.json', 'w') as f:
-        json.dump(f)
+        json.dump(catalog, f)
+
+
 
 @app.route('/add-item', methods=['POST'])
+@with_circuit_breaker
 def add_item():
     item = request.json.get('item')
     price = request.json.get('price')
@@ -42,6 +45,7 @@ def add_item():
     return jsonify(items[item]), 201
 
 @app.route('/items', methods=['GET'])
+@with_circuit_breaker
 def get_items():
     items = load_db()
     return jsonify(items), 200
